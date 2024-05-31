@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="UnoKeyboardAcceleratorDemo.Presentation.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UnoKeyboardAcceleratorDemo.Presentation"
+    xmlns:uen="using:Uno.Extensions.Navigation.UI"
+    xmlns:um="using:Uno.Material"
+    xmlns:utu="using:Uno.Toolkit.UI"
+    Background="{ThemeResource BackgroundBrush}"
+    NavigationCacheMode="Required">
+
+    <Grid utu:SafeArea.Insets="VisibleBounds">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <utu:NavigationBar Content="{Binding Title}" />
+
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Spacing="16">
+            <TextBox
+                PlaceholderText="Enter your name:"
+                Text="{Binding Name, Mode=TwoWay}" />
+            <Button
+                AutomationProperties.AutomationId="SecondPageButton"
+                Command="{Binding GoToSecond}"
+                Content="Go to Second Page (F2)">
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator
+                        Key="F2"
+                        Invoked="KeyboardAccelerator_Invoked"
+                        Modifiers="None" />
+                </Button.KeyboardAccelerators>
+            </Button>
+        </StackPanel>
+        <RichEditBox
+            Grid.Row="2"
+            GotFocus="RichEditBox_GotFocus"
+            LostFocus="RichEditBox_LostFocus"
+            PlaceholderText="???" />
+    </Grid>
+</Page>
